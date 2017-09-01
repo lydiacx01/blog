@@ -1,0 +1,60 @@
+support-for-ie ?= true
+
+-pos(type, args)
+	i = 0
+	position unquote(type)
+	{args[i]} args[i+1] is a 'unit'? args[i += 1] : 0
+	{args[i += 1]} args[i+1] is a 'unit'? args[i+1] : 0
+self-pos-absolute()
+	-pos('absolute', arguments)
+self-pos-fixed()
+	-pos('fixed', arguments)
+self-pos-relative()
+	-pos('relative', arguments)
+
+self-border-radius()
+	-webkit-border-radius arguments
+	-moz-border-radius arguments
+	border-radius arguments
+
+self-opacity()
+	/*older safari/Chrome*/
+	-webkit-opacity arguments
+	/*Netscape and Firefox <0.9*/
+	-moz-opacity arguments
+	/*Safari 1.x*/
+	-khtml-opacity arguments
+	opacity arguments
+	if support-for-ie
+		filter unquote('alpha(opacity=%s)' % arguments)
+
+
+-gradient(type, repeat, args)
+	/*safari 5.1-6.0, opera 11.1-12, firefox3.6-15 */
+	if (repeat)
+		grad = 'repeating-' + type
+	else
+		grad = type
+
+	for pref in -webkit- -o- -moz-
+		{pref}{grad}-gradient args
+	{grad}-gradient args
+
+self-radial-gradient()
+	-gradient('radial', false, arguments)
+self-repeating-radial-gradient()
+	-gradient('radial', true, arguments)
+self-linear-gradient()
+	-gradient('linear', false, arguments)
+self-repeating-linear-gradient()
+	-gradient('linear', true, arguments)
+
+self-box-shadow()
+	-webkit-box-shadow arguments
+	-moz-box-shadow arguments
+	box-shadow arguments
+	animation
+	html.ie8 &,
+	html.ie7 &,
+	html.ie6 &
+		filter unquote('progid:DXImageTransform.Microsoft.Shadow(color=%s, Direction=%s, Strength=%s)' % (arguments[0] arguments[1] arguments[2]))

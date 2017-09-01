@@ -1,0 +1,265 @@
+/* @group self-functions */
+@import "functions.styl"
+
+/* @group a + img + inline-button + add-input-group + upload-img-list-group*/
+a
+	text-decoration none
+	overflow hidden
+img
+	margin-bottom 10px
+.download-file-link
+	display inline-block
+.inline-button
+	display inline-block
+	margin-bottom 10px
+	.close
+		float right
+		self-pos-relative top -22px right 10px
+		line-height 40px
+		font-size 40px
+		color rgb(86, 80, 80)
+		&:hover
+			color rgba(234, 52, 75, 0.64)
+	.btn
+		padding 8px 20px
+		border-width 2px
+		border-color rgba(234, 52, 75, 0.64)
+		font-weight bold
+		color rgba(234, 52, 75, 0.64)
+
+.add-input-group
+	display inline-block
+	.input-container
+		margin 15px auto
+		width 400px
+		height 80px
+		background-color azure
+		text-align center
+		padding-top 20px
+		span
+			font-size 40px
+			float right
+			self-pos-relative top -54px right -8px
+			&:hover
+				color red
+		input
+			width 230px
+			margin-right 20px
+			border-radius 3px
+			border #d3e0e9 1px solid
+			font-size 16px
+
+color-light()
+	background-color #3097d1
+	color #f5f5f5
+	border 1px solid #f5f5f5
+color-gray()
+	color #777
+	background-color #ddd
+	border 1px solid #ddd
+.upload-img-list-group
+	.file-select
+		height 3em
+		span
+			line-height 2em
+		input
+			self-pos-relative top -2.5em left -1em
+			width 10em
+			height 3em
+			self-opacity 0
+		&:hover
+			color-light()
+	.before-queue
+	.file-select
+		color-gray()
+	.repeat
+	.queued
+		color-light()
+	.file-preview
+		li
+			display inline-block
+			width 220px;
+			padding 0 10px
+			.delete-file
+				line-height 26px
+				width 26px
+				self-border-radius 15px
+				text-align center
+				color white
+				float right
+				background-color #777777
+				self-pos-relative top 26px left 0
+				&:hover
+					background-color #dac5c5
+			.file-info
+				.progress
+					background-color #9E9E9E
+					width 100%
+					margin 0
+					padding 0
+					.progress-bar
+						margin 0
+						height 100%
+/* @group input + select + textarea + multi-level-linkage */
+input
+select
+textarea
+	padding 3px 10px
+	self-border-radius 4px
+	border #83b4ea 1px solid
+	background-color #FFFFFF
+	color #555555
+	line-height 1.4em
+	font-size 14px
+
+input[type=text]
+select
+textarea
+	width 100%
+
+.checkbox-or-radio
+	padding 5px 0
+	&:hover
+		background-color #d1eeff
+
+.checkbox-or-radio-list
+	.multi-item-parts
+		display block
+		overflow hidden
+		text-overflow ellipsis
+		border-bottom 1px dashed grey
+		input
+			self-pos-relative top 25px left 20px
+		.checkbox-or-radio-list-item
+			padding-left 50px
+
+.multi-level-linkage
+	margin 10px auto
+	width 600px
+	.select-wrap
+		display inline-block
+		width 295px
+		padding-right 10px
+		margin-bottom 10px
+	.last
+		width 100%
+		padding-right 15px
+
+.multi-level-linkage-table
+	.other-query
+		margin 10px auto
+		width 600px
+.upload-file-list-group
+	.list
+		width 100%
+		padding-top 20px
+	a
+		width: 100%;
+		height: 40px;
+		font-size: 18px;
+		overflow: hidden;
+		text-align: center;
+		input[type=file]
+			self-pos-relative top -5px left -10px
+			width: 100%;
+			height: 100%;
+			self-opacity 0
+		span
+			self-pos-relative top -25px left 0
+	.list
+		li
+			font-size 16px
+			display inline-block
+			.close
+				font-size 30px
+				color black
+				margin-left 20px
+
+/* @group ul + ol + table + page-index*/
+ul,
+ol,
+ul ul,
+ul ol,
+ol ul,
+ol ol
+	display block
+	list-style none
+	margin 10px 0
+	padding 0
+
+table
+	font-size 12px
+	margin 20px 0 35px 0
+	th
+	td
+		text-align center
+		a
+			padding 0 6px
+.table-or-warning
+	margin 10px auto
+	width 80%
+	text-align center
+.page_index
+	font-family initial
+	text-align center
+	cursor pointer
+	span
+		padding 3px
+		margin 10px 5px
+	.hoverred
+		color #00B000
+		border #dddfe0 2px solid
+	.current
+	.prev
+	.next
+		border #dddfe0 2px solid
+
+/* @group progress */
+.submit-on-progress-mask
+	z-index 1000
+	background-color rgba(4, 4, 4, 0.7)
+	float left
+	self-pos-absolute 0 0
+	.progress
+		z-index 1001
+		self-pos-fixed left 15% bottom 50%
+		width 70%
+
+.warning-wrap
+	width 80%
+	background-color beige
+	padding 50px 20px
+	font-size 18px
+	color #2f5ee2
+	margin 40px auto
+	text-align center
+
+.red
+	color red
+
+.margin-ub-10
+	margin 10px 0 !important
+.margin-b-10
+	margin-bottom 10px!important
+.margin-lr-10
+	margin 0 10px !important
+.margin-r-10
+	margin-right 10px !important
+
+@media screen and (max-device-width: 420px)
+	.multi-level-linkage
+		width 300px
+
+	.page_index
+		font-size 10px
+		span
+			padding 1px
+			margin 10px 3px
+		.prev
+		.next
+			padding 1px 2px
+			margin 10px 5px
+	.multi-level-linkage-table
+		.query-wrap
+			.other-query
+				width 300px
