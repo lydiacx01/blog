@@ -20,6 +20,7 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        BadControllerReponseMethod::class
     ];
 
     /**
@@ -44,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof BadControllerReponseMethod) {
+            return response()->view($exception->getView(), [
+                'backUrl' => $exception->getBackUrl(),
+                'text' => $exception->getMessage()
+            ]);
+        }
         return parent::render($request, $exception);
     }
 

@@ -1,0 +1,111 @@
+@import "../functions.styl"
+body
+	overflow hidden
+	width 100%
+	height 100%
+	.header
+		self-pos-absolute 0 0
+		width 100%
+		height 120px
+		background url("/img/deap-ocean.jpg") no-repeat 10% 50%
+		background-size cover
+		.marker
+			color white
+			self-pos-relative top 5% left 10%
+	.body-container
+		width 100%
+		height 100%
+		self-pos-absolute top 120px left 0
+		#main-container
+			height 100%
+			width 70%
+			margin 0 15%
+			padding 30px 20px
+			background-color #c5d6e1
+			.bar-wrap
+				padding-right 200px
+				margin-bottom 20px
+				text-align right
+				.bar-button
+					self-pos-relative top 0 right -192px
+			//all-页面
+			#article-list
+				width 100%
+				height 555px
+				padding 0 15px
+				overflow-y scroll
+				ul
+					height 560px
+					.article-item
+						display block
+						height 105px
+						padding 10px 15px 20px 20px
+						border-bottom dashed 2px #938989
+						word-break break-all
+						text-overflow clip
+						overflow hidden
+						&:hover
+							background-color #77afbb
+						.article-info
+							.article-title
+								line-height 28px
+								font-size 18px
+								font-weight bold
+								margin-right 20px
+								color #000000
+							.info
+								font-size 13px
+								margin-right 10px
+						.article-description
+							line-height 29px
+							font-size 14px
+				.end
+					self-pos-absolute bottom 30px left 50%
+					color gray
+			//show-页面
+			.show-header
+				text-align center
+				padding-bottom 20px
+				h2
+					color black
+				.show-info
+					span
+						color darkgrey
+						font-size 16px
+						text-decoration underline
+						margin-right 25px
+			#ht
+				padding 0 10px
+				font-size 16px
+				color grey
+			form
+				.form-group
+					clear both
+					padding-bottom 40px
+					label
+						font-size 18px
+				.article-content
+				.article-description
+					padding 15px 30px 0 30px
+					height 100%
+					div
+						line-height 28px
+						font-size 14px
+						width 100%
+				.form-button-wrap
+					margin 20px auto
+					text-align center
+					span
+						padding 6px 18px
+						margin-left  20px
+				.popup
+					width 40%
+					self-pos-absolute top 10% left 30%
+					z-index 3
+		#mask
+			self-pos-absolute top 0 left 0
+			width 100%
+			background-color black
+			self-opacity 0.8
+			z-index 2
+

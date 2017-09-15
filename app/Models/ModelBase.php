@@ -10,8 +10,9 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class ModelBase extends Model
+abstract class ModelBase extends Model
 {
 
 }

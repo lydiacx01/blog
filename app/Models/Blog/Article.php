@@ -8,6 +8,7 @@ use App\ModelBase;
 class Article extends ModelBase
 {
     protected $table = 'articles';
+    protected $guarded = [];
 
     public function getCategoryNameAttribute() {
         return $this->attributes['category_name'];
@@ -35,4 +36,7 @@ class Article extends ModelBase
         return $this->belongsTo(Category::class);
     }
 
+    public function scopeAllList($query) {
+        return $query;
+    }
 }

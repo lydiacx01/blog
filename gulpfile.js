@@ -21,9 +21,11 @@ elixir(mix => {
     mix.webpack('common-func.js');
     mix.webpack('geo-distance.js');
     mix.webpack('cookieObj.js');
+    mix.webpack('blog/base.js', 'public/js/blog-base.js');
 
     //stylus
     mix.stylus('functions.styl', 'public/stylus/functions.css');
     mix.stylus('common.styl', 'public/stylus/common.css');
+    mix.stylus('blog/base.styl', 'public/stylus/blog-base.css');
 });
 

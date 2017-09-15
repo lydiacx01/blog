@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 require('./common-func');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the body of the page. From here, you may begin adding components to
@@ -34,6 +35,6 @@ Vue.component('multi-level-linkage-table', require('./components/multi-level-lin
 Vue.component('loading-square-rotate', require('./components/loading-square-rotate.vue'));
 Vue.component('checkbox-or-radio', require('./components/checkbox-or-radio.vue'));
 Vue.component('checkbox-or-radio-list', require('./components/checkbox-or-radio-list.vue'));
-// const appVue = new Vue({
-//     el: '#app'
-// });
+const appVue = new Vue({
+    el: '#app'
+});

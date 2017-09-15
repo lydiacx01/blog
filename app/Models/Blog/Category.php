@@ -2,9 +2,9 @@
 
 namespace App\Blog;
 
-use Illuminate\Database\Eloquent\Model;
+use App\ModelBase;
 
-class Category extends Model
+class Category extends ModelBase
 {
     protected $table = 'categories';
     public $timestamps = false;
@@ -15,5 +15,10 @@ class Category extends Model
 
     public function articles() {
         return $this->hasMany(Article::class, 'category_name', 'name');
+    }
+
+    public static function allName() {
+        $obj = new static();
+        return $obj->all()->pluck('name')->all();
     }
 }
