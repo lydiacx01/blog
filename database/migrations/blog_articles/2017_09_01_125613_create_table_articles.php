@@ -17,7 +17,7 @@ class CreateTableArticles extends Migration
             $table->increments('id');
             $table->string('title', 30);
             $table->string('description', 255)->nullable();
-            $table->string('category_name', 10);
+            $table->string('category_name', 30);
             $table->integer('content_id')->unsigned()->nullable();
             $table->timestamps();
 

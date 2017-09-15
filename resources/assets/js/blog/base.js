@@ -89,7 +89,7 @@ window.onload = function() {
         var items = ['title', 'category', 'description', 'content'],
             a = location.href.split('/'),
             prop,
-            f = $('form'),
+            f = $('.container-form'),
             c = $('.article-content');
         if (a[a.length - 2] == 'e') {
             items.push('id');
@@ -110,6 +110,14 @@ window.onload = function() {
         return true;
     }
 
+    function cateCheck(e) {
+        if (!$('[name=category]').val()) {
+            alert('请添加新分类后再提交！')
+            return false;
+        }
+        return  true;
+    }
+
     initShow();
     initTextArea(md);
     initTextArea($('#article-description'));
@@ -118,4 +126,5 @@ window.onload = function() {
     $('#before-submit').on('click', mask);
     $('#cancel').on('click', cancel);
     $('#submit').on('click', check);
+    $('#submit-new-category').on('click', cateCheck);
 }

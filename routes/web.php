@@ -26,8 +26,7 @@ Route::group(['prefix' => '/blog', 'namespace' => 'Blog'], function() {
     Route::get('/e/{id}', 'BlogController@editArticle');
     //category
     Route::get('/category', 'BlogController@category');
-    Route::get('/newCategory', 'BlogController@newCategory');
-    Route::get('/saveCategory', 'BlogController@saveCategory');
+    Route::get('/category/n', 'BlogController@newCategory');
 });
 
 Auth::routes();

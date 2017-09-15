@@ -2,7 +2,7 @@
 
 @section('main-container')
     <div id="main-container">
-        <form method="post" action="/blog/save">
+        <form class="container-form" method="post" action="/blog/save">
             <div id="main">
                 <div class="bar-wrap">
                     <div class="bar-button">

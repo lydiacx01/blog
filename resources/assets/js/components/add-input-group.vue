@@ -4,14 +4,17 @@
 		<div v-for="(item, index) in items" is="inlineButton" :msg="item" :canRemove="false"
 		     @remove="items.splice(index, 1);">
 		</div>
-		<button class="btn btn-danger" :disabled="disableBtn" @click="showInput">
+		<button class="btn btn-danger" :disabled="disableBtn" @click.stop.prevent="showInput">
 			<span class="glyphicon glyphicon-plus"></span>
 			添加
 		</button>
 		<div class="input-container" v-show="show">
 			<span @click="show=false;">&times;</span>
 			<input type="text" v-model="inputValue"/>
-			<button class="btn btn-danger" @click="addNewItem" :disabled="isEmpty">确认添加</button>
+			<button class="btn btn-danger" @click.stop.prevent="addNewItem" :disabled="isEmpty">确认添加</button>
+		</div>
+		<div v-show="this.items.length">
+			<slot></slot>
 		</div>
 	</div>
 </template>

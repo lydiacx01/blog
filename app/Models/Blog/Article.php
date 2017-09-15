@@ -4,6 +4,7 @@ namespace App\Blog;
 
 
 use App\ModelBase;
+use Illuminate\Support\Facades\DB;
 
 class Article extends ModelBase
 {
@@ -38,5 +39,9 @@ class Article extends ModelBase
 
     public function scopeAllList($query) {
         return $query;
+    }
+    public function scopeCategoryCount($query) {
+        return $query->select(DB::raw('count(id) as count, category_name as name'))
+            ->groupBy('name');
     }
 }

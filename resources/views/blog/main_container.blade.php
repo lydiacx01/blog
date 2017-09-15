@@ -8,6 +8,10 @@
             </div>
         </div>
 
+        @if ($errors->any())
+            <warning msg="{{'<p>' . implode('</p><p>', $errors->all()) . '</p>'}}"></warning>
+        @endif
+
         @yield('main')
     </div>
 @endsection

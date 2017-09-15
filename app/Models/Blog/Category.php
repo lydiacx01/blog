@@ -7,6 +7,7 @@ use App\ModelBase;
 class Category extends ModelBase
 {
     protected $table = 'categories';
+    protected $guarded = [];
     public $timestamps = false;
 
     public function scopeName($query, $name) {

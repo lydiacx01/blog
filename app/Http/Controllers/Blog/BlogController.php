@@ -14,12 +14,14 @@ use App\Blog\Category;
 use App\Blog\Content;
 use App\Exceptions\BadControllerReponseMethod;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BlogSaveRequest;
+use App\Traits\ViewHelper\TableHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
+    use TableHelper;
+
     public function all(Request $request) {
         $pagi = Article::allList()->simplePaginate(5, ['id', 'title', 'category_name', 'description', 'updated_at']);
         $needPage = intval($request->input('page'));
@@ -91,7 +93,7 @@ class BlogController extends Controller
         }
     }
 
-    public function saveArticle(BlogSaveRequest $request) {
+    public function saveArticle(NewCategoryRequest $request) {
         $p = $request->all();
         $path = null;
 
@@ -104,6 +106,7 @@ class BlogController extends Controller
 
                     $content = $article->content;
                     $content->saveContentBody($p['content'], $content->path);
+                    $article->updated_at = date("Y-m-d H:i:s", time());
                 } else {
                     $content = new Content();
                     $path = $content->saveContentBody($p['content']);
@@ -134,14 +137,37 @@ class BlogController extends Controller
     }
 
     public function category() {
-        return view('blog.category');
+        $all = Category::all()->pluck('name')->all();
+        $articleCount = Article::categoryCount()->pluck('count','name')->all();
+        $list = [];
+        foreach ($all as $name) {
+            $count = isset($articleCount[$name])? $articleCount[$name] : 0;
+            $list[] = [$name, "{$count}"];
+        }
+        $header = ['分类名称', '文章统计'];
+        $table = $this->getTable($header, $list);
+        return view('blog.category', $table);
     }
 
-    public function newCategory() {
 
-    }
+    public function newCategory(Request $request) {
+        try {
+            $list = explode(',', $request->input('category'));
+            if (Category::whereIn('name', $list)->count()) {
+                throw new \Exception("不能添加重复的类别！");
+            }
 
-    public function saveCategory() {
+            DB::transaction(function($list) use($list) {
+                foreach ($list as $one) {
+                    Category::create([
+                        'name' => $one
+                    ]);
+                }
+            });
+            return redirect('/blog/category');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['category' => $e->getMessage()]);
+        }
 
     }
 }
