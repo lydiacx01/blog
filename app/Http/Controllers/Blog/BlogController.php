@@ -14,6 +14,7 @@ use App\Blog\Category;
 use App\Blog\Content;
 use App\Exceptions\BadControllerReponseMethod;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogSaveRequest;
 use App\Traits\ViewHelper\TableHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,32 +94,32 @@ class BlogController extends Controller
         }
     }
 
-    public function saveArticle(NewCategoryRequest $request) {
-        $p = $request->all();
+    public function saveArticle(BlogSaveRequest $request) {
+        $input = $request->all();
         $path = null;
 
         try {
-            DB::transaction(function($p) use($p){
-                if (isset($p['update']) && boolval($p['update']) === true) {var_dump('更新');
-                    $article = Article::find($p['code']);
+            DB::transaction(function() use($input){
+                if (isset($input['update']) && boolval($input['update']) === true) {
+                    $article = Article::find($input['code']);
                     if (!$article)
                         throw new \Exception('更新失败，参数错误！');
 
                     $content = $article->content;
-                    $content->saveContentBody($p['content'], $content->path);
+                    $content->saveContentBody($input['content'], $content->path);
                     $article->updated_at = date("Y-m-d H:i:s", time());
                 } else {
                     $content = new Content();
-                    $path = $content->saveContentBody($p['content']);
+                    $path = $content->saveContentBody($input['content']);
                     $content->path = $path;
                     $content->save();
-                    $article = new Article();var_dump($content);
+                    $article = new Article();
                     $article->contentId = $content->id;
                 }
 
-                $article->title = $p['title'];
-                $article->categoryName = $p['category'];
-                $article->description = $p['description'];
+                $article->title = $input['title'];
+                $article->categoryName = $input['category'];
+                $article->description = $input['description'];
                 $article->save();
 
                 $content->articleId = $article->id;
@@ -131,7 +132,7 @@ class BlogController extends Controller
                 unlink($path);
             }
             return redirect()->back()
-                ->withInput($p)
+                ->withInput($input)
                 ->withErrors(['title' => $e->getMessage()]);
         }
     }
@@ -157,7 +158,7 @@ class BlogController extends Controller
                 throw new \Exception("不能添加重复的类别！");
             }
 
-            DB::transaction(function($list) use($list) {
+            DB::transaction(function() use($list) {
                 foreach ($list as $one) {
                     Category::create([
                         'name' => $one

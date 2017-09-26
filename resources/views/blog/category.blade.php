@@ -6,10 +6,14 @@
 @endsection
 @section('main')
     <h3>分类列表</h3>
-    <div id="category-list">
-        <custome-table :body="{{$tableBody}}" :head="{{$tableHead}}">
-        </custome-table>
-    </div>
+    @if (isset($tableBody) && $tableBody)
+        <div id="category-list">
+            <custome-table :body="{{$tableBody}}" :head="{{$tableHead}}">
+            </custome-table>
+        </div>
+    @else
+        <warning msg="还没有任何分类!"></warning>
+    @endif
 
     <div id="new-category">
         <form method="get" action="/blog/category/n">

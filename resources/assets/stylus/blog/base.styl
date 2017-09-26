@@ -6,16 +6,16 @@ body
 	.header
 		self-pos-absolute 0 0
 		width 100%
-		height 120px
+		height 70px
 		background url("/img/deap-ocean.jpg") no-repeat 10% 50%
 		background-size cover
 		.marker
 			color white
-			self-pos-relative top 5% left 10%
+			self-pos-relative top -15px left 10%
 	.body-container
 		width 100%
 		height 100%
-		self-pos-absolute top 120px left 0
+		self-pos-absolute top 70px left 0
 		#main-container
 			height 100%
 			width 70%
@@ -75,7 +75,9 @@ body
 						text-decoration underline
 						margin-right 25px
 			#ht
-				padding 0 10px
+				height 400px
+				overflow-y scroll
+				padding 0 10px 15px 10px
 				font-size 16px
 				color grey
 			form
@@ -109,3 +111,51 @@ body
 			self-opacity 0.8
 			z-index 2
 
+@media screen and (max-device-width: 420px)
+	body
+		.body-container
+			#main-container
+				padding 10px 5px 30px 5px
+				margin 0
+				width 100%
+				.bar-wrap
+					.bar-button
+						width 200px
+						self-pos-relative top 0 right -112px
+						.btn
+							line-height 1
+				form
+					.form-group
+						padding-bottom 0
+						margin-top -15px
+						label
+							font-size 12px
+						.col-sm-6
+							self-pos-relative top -32px left 50px
+							width 250px
+					.submit-before-wrap
+						height 380px
+						.article-content
+							margin-top -60px
+							padding 15px 10px 0 10px
+							.nav-tabs
+								li
+									a
+										line-height 1
+							.tab-content
+								textarea
+									height 200px
+						.form-button-wrap
+							margin-top -110px
+					.popup
+						width 100%
+						self-pos-relative top 10% left 0
+						.article-description
+							padding 0
+				#ht
+					height 200px
+				.show-header
+					.show-info
+						span
+							font-size 12px
+							margin-right 10px

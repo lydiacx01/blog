@@ -11,8 +11,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link type="text/css" rel="stylesheet" href="/css/app.css">
-        <link type="text/css" rel="stylesheet" href="/stylus/common.css">
+        <link type="text/css" rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ URL::asset('stylus/common.css') }}">
         @yield('styles')
 
 

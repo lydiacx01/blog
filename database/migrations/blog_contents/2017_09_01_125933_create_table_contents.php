@@ -15,7 +15,7 @@ class CreateTableContents extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('article_id');
+            $table->unsignedInteger('article_id')->nullable();
             $table->string('path', 255);
 
             $table->index(['article_id'], 'article');
@@ -32,3 +32,4 @@ class CreateTableContents extends Migration
         Schema::dropIfExists('contents');
     }
 }
+

@@ -1,4 +1,3 @@
-window.showdown = require('showdown');
 
 window.onload = function() {
     var c,

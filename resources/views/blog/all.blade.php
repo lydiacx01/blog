@@ -6,25 +6,29 @@
 @endsection
 
 @section('main')
-    <div id="article-list" data-url="{{$next}}">
-        <ul>
-            @foreach($items as $article)
-                <li class="article-item">
-                    <div class="article-info">
-                        <a class="article-title" href="/blog/s/{{$article->id}}">{{$article->title}}</a>
-                        <span class="info">{{$article->categoryName}}</span>
-                        <span class="info">{{$article->updated_at}}</span>
-                    </div>
+    @if ($items)
+        <div id="article-list" data-url="{{$next}}">
+            <ul>
+                @foreach($items as $article)
+                    <li class="article-item">
+                        <div class="article-info">
+                            <a class="article-title" href="/blog/s/{{$article->id}}">{{$article->title}}</a>
+                            <span class="info">{{$article->categoryName}}</span>
+                            <span class="info">{{$article->updated_at}}</span>
+                        </div>
 
-                    <div class="article-description">
-                        {{$article->description}}
-                    </div>
-                </li>
-            @endforeach
-        </ul>
-        <div class="end {{$next? 'hide': ''}}">
-            没有更多了
+                        <div class="article-description">
+                            {{$article->description}}
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+            <div class="end {{$next? 'hide': ''}}">
+                没有更多了
+            </div>
         </div>
-    </div>
+    @else
+        <warning msg="还没有开始写文章！"></warning>
+    @endif
 @endsection
 

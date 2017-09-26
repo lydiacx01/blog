@@ -6,7 +6,7 @@
 @endsection
 @section('main')
     <div class="show-header">
-        <h2>{{$title}}</h2>
+        <h3>{{$title}}</h3>
         <div class="show-info">
             分类： <span>{{$category}}</span>
             更新时间： <span>{{$updatedTime}}</span>

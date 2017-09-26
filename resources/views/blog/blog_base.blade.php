@@ -7,7 +7,7 @@
 @section('content')
     <div class="header">
         <div class="marker">
-            <h2>茜仔's BLOG</h2>
+            <h3>茜仔's BLOG</h3>
             <p>就是那么爱折腾 !</p>
         </div>
     </div>
